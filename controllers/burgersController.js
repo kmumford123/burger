@@ -11,8 +11,8 @@ router.get("/", function(req, res) {
         var hbsObject = {
             burgers: data
         };
-        console.log(hbsObject);
-        res.render('index', hbsObject);
+        console.log(hbsObject.burgers[2].burger_name);
+        res.render('index', hbsObject.burgers[2]);
     })
 });
 
@@ -61,3 +61,4 @@ router.delete("/api/burgers/:id", function(req, res) {
 // app.listen(PORT, function() {
 //     console.log("App listening on PORT " + PORT);
 // });
+module.exports = router;
