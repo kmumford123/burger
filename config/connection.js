@@ -9,7 +9,7 @@ if (process.env.JAWSDB_URL) {
         password: "b!gPh@rma23",
         database: "burgers_db"
     });
-    connect.connect()
+    connection.connect()
         // {
         //     if (err) throw err;
         //     //  ();
