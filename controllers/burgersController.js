@@ -1,30 +1,39 @@
 var express = require("express");
 // var bodyParser = require("body-parser");
-var burger = require('../models/burger');
+var Burger = require('../models/orm');
 var router = express.Router();
 // var PORT = process.env.PORT || 3000;
 
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
 router.get("/", function(req, res) {
-    burger.selectAll(function(data) {
-        var hbsObject = {
-            burgers: data
-        };
-        console.log(hbsObject.burgers[2].burger_name);
-        res.render('index', hbsObject.burgers[2]);
+    Burger.getAll(function(err, data) {
+        if (err) {
+            res.send("NOT FOUND");
+        } else {
+
+            var hbsObject = {
+                burgers: data
+            };
+            // console.log(hbsObject.burgers[2].burger_name);
+            res.render('index', hbsObject);
+        }
     })
 });
 
 router.post("/api/burgers", function(req, res) {
-    burger.insertOne([
-        "burger_name",
-        "devoured"
-    ], [
-        req.body.burger_name, req.body.devoured
-    ], function(result) {
-        res.json({ id: result.insertId });
+    var newBurger = new Burger(null, req.body.burger_name, req.body.devoured);
+
+    newBurger.create(function(err, data) {
+        // decide what to do - check
+        // the example in gitlab for alt-orm
+        res.json(data);
     });
+    // Burger.create(function (err, data) {}
+    //     req.body.burger_name, req.body.devoured
+    // ], function(result) {
+    //     res.json({ id: result.insertId });
+    // });
 });
 
 router.put("/api/burgers/:id", function(req, res) {
@@ -32,7 +41,7 @@ router.put("/api/burgers/:id", function(req, res) {
 
     console.log("condition", condition);
 
-    burger.updateOne({
+    Burger.updateOne({
         devoured: req.body.devoured
     }, condition, function(result) {
         if (result.changedRows == 0) {
@@ -49,7 +58,7 @@ router.delete("/api/burgers/:id", function(req, res) {
 
     console.log("condition", condition);
 
-    burger.deleteOne(condition, function(req, res) {
+    Burger.deleteOne(condition, function(req, res) {
         if (result.affectedRows === 0) {
             return res.status(404).end();
         } else {
