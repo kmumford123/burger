@@ -1,6 +1,6 @@
 var express = require("express");
 // var bodyParser = require("body-parser");
-var Burger = require('../models/orm');
+var Burger = require('../models/burger');
 var router = express.Router();
 // var PORT = process.env.PORT || 3000;
 
