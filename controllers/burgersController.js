@@ -44,12 +44,13 @@ router.put("/api/burgers/:id", function(req, res) {
     Burger.updateOne({
         devoured: req.body.devoured
     }, condition, function(result) {
-        if (result.changedRows == 0) {
-            // If no rows were changed, then the ID must not exist, so 404
-            return res.status(404).end();
-        } else {
-            res.status(200).end();
-        }
+        // if (result.changedRows == 0) {
+        //     // If no rows were changed, then the ID must not exist, so 404
+        //     return res.status(404).end();
+        // } else {
+        //     result.status(200).end();
+        // }
+        res.send("It's Done")
     });
 });
 
@@ -58,9 +59,15 @@ router.delete("/api/burgers/:id", function(req, res) {
 
     console.log("condition", condition);
 
-    Burger.delete(condition, function(req, res) {
-        res.json("We did it")
-    })
+    Burger.delete(condition, function(result) {
+        // if (result.changedRows == 0) {
+        //     // If no rows were changed, then the ID must not exist, so 404
+        //     return res.status(404).end();
+        // } else {
+        //     result.status(200).end();
+        // }
+        res.send("It's Done")
+    });
 });
 
 // app.listen(PORT, function() {

@@ -34,9 +34,7 @@ Burger.update = function(criteria, cb) {
     }
     // TODO delete a record
 Burger.delete = function(criteria, cb) {
-    var BurgerId = {
-        id: this.id
-    };
+    var BurgerId = `id =  ${this.id}`;
     connection.query("DELETE FROM BURGERS WHERE ?", BurgerId, cb)
 }
 module.exports = Burger;
