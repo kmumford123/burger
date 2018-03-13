@@ -44,7 +44,8 @@ $(function() {
     });
 
     $(".delete-burger").on("click", function(event) {
-        var id = $(this).data("id");
+        var id = $('input[name=delburger]').val().trim();
+        console.log(id)
 
         // Send the DELETE request.
         $.ajax(`/api/burgers/${id}`, {
