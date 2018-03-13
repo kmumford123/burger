@@ -18,7 +18,7 @@ Burger.getAll = function(cb) {
 Burger.find = function(criteria, cb) {
         connection.query("SELECT * FROM BURGER WHERE ?", criteria, cb);
     }
-    // We add the method to the prototype
+    // We add the method to the prototype something
     // since we are having an object to save
     // create a record
 Burger.prototype.create = function(cb) {
