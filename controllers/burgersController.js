@@ -8,6 +8,8 @@ var router = express.Router();
 // app.use(bodyParser.json());
 router.get("/", function(req, res) {
     Burger.getAll(function(err, data) {
+        console.log('this is the data ----', data)
+        console.log('this is the err!!!!', err)
         if (err) {
             res.send("NOT FOUND");
         } else {
