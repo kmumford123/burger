@@ -1,4 +1,6 @@
-USE k9rs1nvcj0fap6sn;
+USE burgers_db;
+
+DROP TABLE IF EXISTS burgers_db;
 
 CREATE TABLE burgers (
     id INT (10) AUTO_INCREMENT PRIMARY KEY,
